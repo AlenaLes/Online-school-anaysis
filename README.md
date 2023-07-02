@@ -46,6 +46,7 @@ _________________________________
 
 Итоговый результат по дашборду:
 
-![Dashboard 2](https://github.com/AlenaLes/Online-school-anaysis/assets/100629361/65760193-d4df-4ec9-a79b-223cf897108f)
+![Dashboard_proart](https://github.com/AlenaLes/Online-school-anaysis/assets/100629361/a4bdcdf1-c903-4f55-8fe8-aa66e46f6392)
+
 
 
