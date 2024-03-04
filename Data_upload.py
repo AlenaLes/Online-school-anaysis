@@ -6,13 +6,15 @@ import numpy as np
 import datetime
 
 # Указываем данные по группе (точные данные указаны не будут)
-token = 'xxxxxxxxxxxx'
+token   = 'xxxxxxxxxxxx'
 version = 2
-id_rk = 00000000
+id_rk   = 00000000
 
-# Часть кода для выгрузки json формата данных
-# Если что-то пойдет не так (к примеру долгий ответ от сайта), то выгрузка будет прекращена и на выходе будут только скачанные данные
-# При выполнении запроса на выходе будут дополнительно отображаться кол-во скачанных данных (в одном offset - максимум 1000)
+'''
+Часть кода для выгрузки json формата данных
+Если что-то пойдет не так (к примеру долгий ответ от сайта), то выгрузка будет прекращена и на выходе будут только скачанные данные
+При выполнении запроса на выходе будут дополнительно отображаться кол-во скачанных данных (в одном offset - максимум 1000)
+'''
 
 offset_id = None
 all_data = []
@@ -22,21 +24,21 @@ while True:
         timeout = 300,
         headers = {'Connection':'close'}, # после выполнения закрываем соединение
         params = {
-        'vk_group_id':id_rk,
-        'access_token':token,
-        'v': version,
-        'date_from': '01.01.2023 00:00:00',
-        'date_to': '01.02.2023 00:00:00',
-        'count': 1000,
-        'offset_id': offset_id
+        'vk_group_id'   : id_rk,
+        'access_token'  : token,
+        'v'             : version,
+        'date_from'     : '01.01.2023 00:00:00',
+        'date_to'       : '01.02.2023 00:00:00',
+        'count'         : 1000,
+        'offset_id'     : offset_id
     }
     )
     # print (req_stat.status_code)
     print (req_stat.reason)
     
     try:
-        data = req_stat.json()['items']
-        offset_id = req_stat.json().get('offset_id')
+        data        = req_stat.json()['items']
+        offset_id   = req_stat.json().get('offset_id')
     except Exception as e:
         print ('SOMETHING IS WRONG')
         break
@@ -44,7 +46,7 @@ while True:
     print(offset_id, len(data))
     all_data.extend(data)
     
-    if offset_id is None:                                      # выполнение останавливается, когда все данные за период выгружаются
+    if offset_id is None:              # выполнение останавливается, когда все данные за период выгружаются
         break
     
 
